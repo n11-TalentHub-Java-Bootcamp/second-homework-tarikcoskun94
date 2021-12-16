@@ -1,4 +1,4 @@
-package com.n11.bootcamp.dao;
+package com.n11.bootcamp.entity;
 
 import lombok.Data;
 
