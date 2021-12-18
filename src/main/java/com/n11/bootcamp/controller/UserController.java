@@ -50,4 +50,10 @@ public class UserController {
 
         return ResponseEntity.ok(responseMessage);
     }
+
+    @PutMapping
+    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO) {
+
+        return new ResponseEntity<UserDTO>(userService.updateUser(userDTO), HttpStatus.CREATED);
+    }
 }

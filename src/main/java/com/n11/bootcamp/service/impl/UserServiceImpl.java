@@ -60,7 +60,16 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void deleteUserByUsernameAndPhoneNumber(String username, String phoneNumber) {
 
-        userDao.findByUsernameAndPhoneNumber(username, phoneNumber).orElseThrow(() -> new RuntimeException("User is not found by phone number."));
+        userDao.findByUsernameAndPhoneNumber(username, phoneNumber).orElseThrow(() -> new RuntimeException("User is not found by username and phone number."));
         userDao.deleteUserByUsernameAndPhoneNumber(username, phoneNumber);
+    }
+
+    @Override
+    public UserDTO updateUser(UserDTO userDTO) {
+
+        User requestUser = UserDTO.convertUserDTOToUser(userDTO);
+        User responseUser = userDao.save(requestUser);
+
+        return UserDTO.convertUserToUserDTO(responseUser);
     }
 }

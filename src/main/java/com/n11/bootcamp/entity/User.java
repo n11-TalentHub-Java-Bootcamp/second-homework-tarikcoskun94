@@ -32,12 +32,12 @@ public class User {
     @Column(length = 50, name = "surname", nullable = false)
     private String surname;
 
-    @Column(length = 50, name = "email", nullable = false)
+    @Column(length = 50, name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(length = 15, name = "phone_number")
+    @Column(length = 15, name = "phone_number", unique = true)
     private String phoneNumber;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private List<ProductComment> productComments;
 }
