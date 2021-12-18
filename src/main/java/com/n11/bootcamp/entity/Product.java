@@ -12,7 +12,7 @@ import java.util.Date;
 @Table(name = "products")
 public class Product {
 
-    @SequenceGenerator(name = "generator", sequenceName = "product_id_seq")
+    @SequenceGenerator(name = "generator", sequenceName = "product_id_seq", allocationSize = 1)
     @Id
     @GeneratedValue(generator = "generator")
     @Column(name = "id", nullable = false)

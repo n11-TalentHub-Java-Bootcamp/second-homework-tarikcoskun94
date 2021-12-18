@@ -10,4 +10,10 @@ public interface UserService {
     List<UserDTO> findAllUsers();
 
     UserDTO findUserByUsername(String username);
+
+    UserDTO findByPhoneNumber(String phoneNumber);
+
+    UserDTO saveUser(UserDTO userDTO);
+
+    void deleteUserByUsernameAndPhoneNumber(String username, String phoneNumber);
 }

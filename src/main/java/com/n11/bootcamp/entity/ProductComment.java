@@ -11,7 +11,7 @@ import java.util.Date;
 @Table(name = "product_comments")
 public class ProductComment {
 
-    @SequenceGenerator(name = "generator", sequenceName = "product_comment_id_seq")
+    @SequenceGenerator(name = "generator", sequenceName = "product_comment_id_seq", allocationSize = 1)
     @Id
     @GeneratedValue(generator = "generator")
     @Column(name = "id", nullable = false)

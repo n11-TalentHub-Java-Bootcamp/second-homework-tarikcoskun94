@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name = "categories")
 public class Category {
 
-    @SequenceGenerator(name = "generator", sequenceName = "category_id_seq")
+    @SequenceGenerator(name = "generator", sequenceName = "category_id_seq", allocationSize = 1)
     @Id
     @GeneratedValue(generator = "generator")
     @Column(name = "id", nullable = false)

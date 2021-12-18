@@ -7,6 +7,7 @@ import com.n11.bootcamp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,8 +34,33 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO findUserByUsername(String username) {
 
-        User user = userDao.findByUsername(username).orElseThrow(() -> new RuntimeException("User is not found."));
+        User user = userDao.findByUsername(username).orElseThrow(() -> new RuntimeException("User is not found by username."));
 
         return UserDTO.convertUserToUserDTO(user);
+    }
+
+    @Override
+    public UserDTO findByPhoneNumber(String phoneNumber) {
+
+        User user = userDao.findByPhoneNumber(phoneNumber).orElseThrow(() -> new RuntimeException("User is not found by phone number."));
+
+        return UserDTO.convertUserToUserDTO(user);
+    }
+
+    @Override
+    public UserDTO saveUser(UserDTO userDTO) {
+
+        User requestUser = UserDTO.convertUserDTOToUser(userDTO);
+        User responseUser = userDao.save(requestUser);
+
+        return UserDTO.convertUserToUserDTO(responseUser);
+    }
+
+    @Override
+    @Transactional
+    public void deleteUserByUsernameAndPhoneNumber(String username, String phoneNumber) {
+
+        userDao.findByUsernameAndPhoneNumber(username, phoneNumber).orElseThrow(() -> new RuntimeException("User is not found by phone number."));
+        userDao.deleteUserByUsernameAndPhoneNumber(username, phoneNumber);
     }
 }

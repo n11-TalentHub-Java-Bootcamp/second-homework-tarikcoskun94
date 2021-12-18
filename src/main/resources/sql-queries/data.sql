@@ -9,6 +9,8 @@ INSERT INTO categories( id, name, breakdown, id_super_category)  VALUES (	7	,'Di
 INSERT INTO categories( id, name, breakdown, id_super_category)  VALUES (	8	,'Mobilya',	2	,	3	);
 INSERT INTO categories( id, name, breakdown, id_super_category)  VALUES (	9	,'Sehpa',	3	,	8	);
 
+alter sequence category_id_seq restart with 10;
+
 
 -- Sample data for products
 INSERT INTO products( id, name , price, creation_date, id_category) VALUES (	1	,'Mavi Elbise',	200	, now(), 	4);
@@ -19,6 +21,8 @@ INSERT INTO products( id, name , price, creation_date, id_category) VALUES (	5	,
 INSERT INTO products( id, name , price, creation_date, id_category) VALUES (	6	,'MSI',	20000	, now(), 	7);
 INSERT INTO products( id, name , price, creation_date, id_category) VALUES (	7	,'Orta Sehpa',	600	, now(), 	9);
 
+alter sequence product_id_seq restart with 8;
+
 
 -- Sample data for users
 INSERT INTO users( id, username, name , surname, email, phone_number) VALUES (	1	,'tcoskun' ,'Tarık'	,'COŞKUN'	,'tarikcoskun@hotmail.com.tr'	,'05548960682');
@@ -28,6 +32,8 @@ INSERT INTO users( id, username, name , surname, email, phone_number) VALUES (	4
 INSERT INTO users( id, username, name , surname, email, phone_number) VALUES (	5	,'aaslan' ,'Ahmet'	,'ASLAN'	,'aaslan@yahoo.com'				,'05555556987');
 INSERT INTO users( id, username, name , surname, email, phone_number) VALUES (	6	,'kkiraz' ,'Kerem'	,'KİRAZ'	,'keremkiraz@hotmail.com.tr'	,'05486587215');
 INSERT INTO users( id, username, name , surname, email, phone_number) VALUES (	7	,'sakyol' ,'Seray'	,'AKYOL'	,'serayyyakyol@hotmail.com'		,'05386649987');
+
+alter sequence user_id_seq restart with 8;
 
 
 -- Sample data for product_comments
@@ -60,3 +66,5 @@ INSERT INTO product_comments(id, creation_date, text, id_product, id_user)
 VALUES (6, now(),
         'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids',
         6, 3);
+
+alter sequence product_comment_id_seq restart with 7;

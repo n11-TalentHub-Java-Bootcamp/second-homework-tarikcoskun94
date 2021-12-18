@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Data
@@ -16,7 +17,7 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User {
 
-    @SequenceGenerator(name = "generator", sequenceName = "user_id_seq")
+    @SequenceGenerator(name = "generator", sequenceName = "user_id_seq", allocationSize = 1)
     @Id
     @GeneratedValue(generator = "generator")
     @Column(name = "id", nullable = false)
@@ -36,4 +37,7 @@ public class User {
 
     @Column(length = 15, name = "phone_number")
     private String phoneNumber;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true)
+    private List<ProductComment> productComments;
 }
