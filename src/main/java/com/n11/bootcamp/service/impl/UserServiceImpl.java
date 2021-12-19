@@ -1,6 +1,6 @@
 package com.n11.bootcamp.service.impl;
 
-import com.n11.bootcamp.dao.UserDao;
+import com.n11.bootcamp.dao.UserDAO;
 import com.n11.bootcamp.dto.UserDTO;
 import com.n11.bootcamp.entity.User;
 import com.n11.bootcamp.service.UserService;
@@ -12,17 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Service
 @RequiredArgsConstructor
+@Service
 public class UserServiceImpl implements UserService {
 
-    private final UserDao userDao;
+    private final UserDAO userDAO;
 
     @Override
     public List<UserDTO> findAllUsers() {
 
         List<UserDTO> userDTOList = new ArrayList<>();
-        List<User> userList = userDao.findAll();
+        List<User> userList = userDAO.findAll();
 
         for (User user : userList) {
             userDTOList.add(UserDTO.convertUserToUserDTO(user));
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO findUserByUsername(String username) {
 
-        User user = userDao.findByUsername(username).orElseThrow(() -> new RuntimeException("User is not found by username."));
+        User user = userDAO.findByUsername(username).orElseThrow(() -> new RuntimeException("User is not found by username."));
 
         return UserDTO.convertUserToUserDTO(user);
     }
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO findByPhoneNumber(String phoneNumber) {
 
-        User user = userDao.findByPhoneNumber(phoneNumber).orElseThrow(() -> new RuntimeException("User is not found by phone number."));
+        User user = userDAO.findByPhoneNumber(phoneNumber).orElseThrow(() -> new RuntimeException("User is not found by phone number."));
 
         return UserDTO.convertUserToUserDTO(user);
     }
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     public UserDTO saveUser(UserDTO userDTO) {
 
         User requestUser = UserDTO.convertUserDTOToUser(userDTO);
-        User responseUser = userDao.save(requestUser);
+        User responseUser = userDAO.save(requestUser);
 
         return UserDTO.convertUserToUserDTO(responseUser);
     }
@@ -60,15 +60,15 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void deleteUserByUsernameAndPhoneNumber(String username, String phoneNumber) {
 
-        userDao.findByUsernameAndPhoneNumber(username, phoneNumber).orElseThrow(() -> new RuntimeException("User is not found by username and phone number."));
-        userDao.deleteUserByUsernameAndPhoneNumber(username, phoneNumber);
+        userDAO.findByUsernameAndPhoneNumber(username, phoneNumber).orElseThrow(() -> new RuntimeException("User is not found by username and phone number."));
+        userDAO.deleteUserByUsernameAndPhoneNumber(username, phoneNumber);
     }
 
     @Override
     public UserDTO updateUser(UserDTO userDTO) {
 
         User requestUser = UserDTO.convertUserDTOToUser(userDTO);
-        User responseUser = userDao.save(requestUser);
+        User responseUser = userDAO.save(requestUser);
 
         return UserDTO.convertUserToUserDTO(responseUser);
     }
