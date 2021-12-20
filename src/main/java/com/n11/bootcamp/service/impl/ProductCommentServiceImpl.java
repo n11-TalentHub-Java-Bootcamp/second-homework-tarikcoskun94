@@ -2,11 +2,13 @@ package com.n11.bootcamp.service.impl;
 
 import com.n11.bootcamp.dao.ProductCommentDAO;
 import com.n11.bootcamp.dto.CommentWithUserAndProductDTO;
+import com.n11.bootcamp.dto.ProductCommentDTO;
 import com.n11.bootcamp.entity.ProductComment;
 import com.n11.bootcamp.service.ProductCommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,5 +43,22 @@ public class ProductCommentServiceImpl implements ProductCommentService {
         }
 
         return commentWithUserAndProductDTOList;
+    }
+
+    @Override
+    public ProductCommentDTO saveProductComment(ProductCommentDTO productCommentDTO) {
+
+        ProductComment requestProductComment = ProductCommentDTO.convertProductCommentDTOToProductComment(productCommentDTO);
+        ProductComment responseProductComment = productCommentDAO.save(requestProductComment);
+
+        return ProductCommentDTO.convertProductCommentToProductCommentDTO(responseProductComment);
+    }
+
+    @Override
+    @Transactional
+    public void deleteProductCommentById(Long id) {
+
+        productCommentDAO.findById(id).orElseThrow(() -> new RuntimeException("Product comment is not found by id."));
+        productCommentDAO.deleteProductCommentById(id);
     }
 }

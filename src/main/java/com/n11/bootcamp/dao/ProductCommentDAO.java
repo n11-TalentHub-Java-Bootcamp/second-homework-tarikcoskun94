@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
@@ -14,5 +15,7 @@ public interface ProductCommentDAO extends JpaRepository<ProductComment, Long> {
 
     List<ProductComment> findByProductId(Long productId);
 
-    //void deleteBy(Long id);
+    Optional<ProductComment> findById(Long id);
+
+    void deleteProductCommentById(Long id);
 }

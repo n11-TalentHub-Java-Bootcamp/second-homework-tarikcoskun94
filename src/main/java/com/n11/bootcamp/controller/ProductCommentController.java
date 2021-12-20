@@ -1,13 +1,11 @@
 package com.n11.bootcamp.controller;
 
 import com.n11.bootcamp.dto.CommentWithUserAndProductDTO;
+import com.n11.bootcamp.dto.ProductCommentDTO;
 import com.n11.bootcamp.service.ProductCommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +27,20 @@ public class ProductCommentController {
     public ResponseEntity<List<CommentWithUserAndProductDTO>> findByProductId(@PathVariable Long id) {
 
         return ResponseEntity.ok(productCommentService.findByProductId(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<ProductCommentDTO> saveProductComment(@RequestBody ProductCommentDTO productCommentDTO) {
+
+        return ResponseEntity.ok(productCommentService.saveProductComment(productCommentDTO));
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> deleteProductCommentById(@PathVariable Long id) {
+
+        productCommentService.deleteProductCommentById(id);
+        String responseMessage = "User comment that id is '" + id + "' has been deleted";
+
+        return ResponseEntity.ok(responseMessage);
     }
 }

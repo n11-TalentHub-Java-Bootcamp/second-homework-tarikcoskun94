@@ -35,8 +35,8 @@ public class CommentWithUserAndProductDTO {
         return CommentWithUserAndProductDTO.builder()
                 .commentId(productComment.getId())
                 .commentText(productComment.getText())
-
                 .commentCreationDate(productComment.getCreationDate())
+
                 .userUsername(productComment.getUser().getUsername())
                 .userFirstName(productComment.getUser().getName())
                 .userSurname(productComment.getUser().getSurname())
