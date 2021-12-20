@@ -158,7 +158,98 @@
 		},
 		{
 			"name": "ProductCommentEndPoints",
-			"item": []
+			"item": [
+				{
+					"name": "FindByUserUsername",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/product-comments/with-username/tcoskun",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product-comments",
+								"with-username",
+								"tcoskun"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindByProductId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/product-comments/with-product-id/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product-comments",
+								"with-product-id",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SaveProductComment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"commentText\": \"A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was.\",\r\n    \"commentCreationDate\": \"2021-12-18T22:23:13.393+00:00\",\r\n    \"userId\": 3,\r\n    \"productId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/product-comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product-comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProductCommentById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/product-comments/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product-comments",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
