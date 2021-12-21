@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO findUserByUsername(String username) {
 
-        User user = userDAO.findByUsername(username).orElseThrow(() -> new ApiRequestException("User is not found by username."));
+        User user = userDAO.findByUsername(username).orElseThrow(() -> new ApiRequestException("User is not found by " + username + "."));
 
         return UserDTO.convertUserToUserDTO(user);
     }
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO findByPhoneNumber(String phoneNumber) {
 
-        User user = userDAO.findByPhoneNumber(phoneNumber).orElseThrow(() -> new ApiRequestException("User is not found by phone number."));
+        User user = userDAO.findByPhoneNumber(phoneNumber).orElseThrow(() -> new ApiRequestException("User is not found by " + phoneNumber + "."));
 
         return UserDTO.convertUserToUserDTO(user);
     }
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void deleteUserByUsernameAndPhoneNumber(String username, String phoneNumber) {
 
-        userDAO.findByUsernameAndPhoneNumber(username, phoneNumber).orElseThrow(() -> new ApiRequestException("User is not found by username and phone number."));
+        userDAO.findByUsernameAndPhoneNumber(username, phoneNumber).orElseThrow(() -> new ApiRequestException("User is not found by " + username + " and " + phoneNumber + "."));
         userDAO.deleteUserByUsernameAndPhoneNumber(username, phoneNumber);
     }
 

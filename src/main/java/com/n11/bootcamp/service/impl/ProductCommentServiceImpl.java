@@ -26,6 +26,11 @@ public class ProductCommentServiceImpl implements ProductCommentService {
         List<CommentWithUserAndProductDTO> commentWithUserAndProductDTOList = new ArrayList<>();
         List<ProductComment> productCommentList = productCommentDAO.findByUserUsername(username);
 
+        if (productCommentList.isEmpty())
+        {
+            throw new ApiRequestException("Any comment not found for " + username + ".");
+        }
+
         for (ProductComment productComment : productCommentList) {
             commentWithUserAndProductDTOList.add(CommentWithUserAndProductDTO.convertProductCommentToCommentWithUserAndProductDTO(productComment));
         }
@@ -38,6 +43,11 @@ public class ProductCommentServiceImpl implements ProductCommentService {
 
         List<CommentWithUserAndProductDTO> commentWithUserAndProductDTOList = new ArrayList<>();
         List<ProductComment> productCommentList = productCommentDAO.findByProductId(id);
+
+        if (productCommentList.isEmpty())
+        {
+            throw new ApiRequestException("Any comment not found for product id: " + id + ".");
+        }
 
         for (ProductComment productComment : productCommentList) {
             commentWithUserAndProductDTOList.add(CommentWithUserAndProductDTO.convertProductCommentToCommentWithUserAndProductDTO(productComment));
@@ -59,7 +69,7 @@ public class ProductCommentServiceImpl implements ProductCommentService {
     @Transactional
     public void deleteProductCommentById(Long id) {
 
-        productCommentDAO.findById(id).orElseThrow(() -> new ApiRequestException("Product comment is not found by id."));
+        productCommentDAO.findById(id).orElseThrow(() -> new ApiRequestException("Product comment is not found by id: " + id + "."));
         productCommentDAO.deleteProductCommentById(id);
     }
 }
