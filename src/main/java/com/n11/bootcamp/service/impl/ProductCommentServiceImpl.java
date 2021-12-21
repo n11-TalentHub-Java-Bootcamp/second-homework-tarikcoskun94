@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -23,11 +24,11 @@ public class ProductCommentServiceImpl implements ProductCommentService {
     @Override
     public List<CommentWithUserAndProductDTO> findByUserUsername(String username) {
 
+        // This DTO list is for response.
         List<CommentWithUserAndProductDTO> commentWithUserAndProductDTOList = new ArrayList<>();
         List<ProductComment> productCommentList = productCommentDAO.findByUserUsername(username);
 
-        if (productCommentList.isEmpty())
-        {
+        if (productCommentList.isEmpty()) {
             throw new ApiRequestException("Any comment not found for " + username + ".");
         }
 
@@ -41,11 +42,11 @@ public class ProductCommentServiceImpl implements ProductCommentService {
     @Override
     public List<CommentWithUserAndProductDTO> findByProductId(Long id) {
 
+        // This DTO list is for response.
         List<CommentWithUserAndProductDTO> commentWithUserAndProductDTOList = new ArrayList<>();
         List<ProductComment> productCommentList = productCommentDAO.findByProductId(id);
 
-        if (productCommentList.isEmpty())
-        {
+        if (productCommentList.isEmpty()) {
             throw new ApiRequestException("Any comment not found for product id: " + id + ".");
         }
 
@@ -58,6 +59,12 @@ public class ProductCommentServiceImpl implements ProductCommentService {
 
     @Override
     public ProductCommentDTO saveProductComment(ProductCommentDTO productCommentDTO) {
+
+        // Id and date should be generated automatically.
+        if (productCommentDTO != null) {
+            productCommentDTO.setCommentId(null);
+            productCommentDTO.setCommentCreationDate(Calendar.getInstance().getTime());
+        }
 
         ProductComment requestProductComment = ProductCommentDTO.convertProductCommentDTOToProductComment(productCommentDTO);
         ProductComment responseProductComment = productCommentDAO.save(requestProductComment);

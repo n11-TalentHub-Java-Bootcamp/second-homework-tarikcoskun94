@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDTO> findAllUsers() {
 
+        // This DTO list is for response.
         List<UserDTO> userDTOList = new ArrayList<>();
         List<User> userList = userDAO.findAll();
 
@@ -50,6 +51,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO saveUser(UserDTO userDTO) {
+
+        // Id should be generated automatically.
+        if(userDTO != null){
+            userDTO.setId(null);
+        }
 
         User requestUser = UserDTO.convertUserDTOToUser(userDTO);
         User responseUser = userDAO.save(requestUser);
