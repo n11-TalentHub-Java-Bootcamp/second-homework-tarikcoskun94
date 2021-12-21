@@ -208,7 +208,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"commentText\": \"A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was.\",\r\n    \"commentCreationDate\": \"2021-12-18T22:23:13.393+00:00\",\r\n    \"userId\": 3,\r\n    \"productId\": 2\r\n}",
+							"raw": "{\r\n    \"commentText\": \"A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which wasssssssssyyyyyy.\",\r\n    \"userId\": ?,\r\n    \"productId\": ?\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -235,7 +235,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/product-comments/11",
+							"raw": "http://localhost:8080/product-comments/13",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -243,7 +243,7 @@
 							"port": "8080",
 							"path": [
 								"product-comments",
-								"11"
+								"13"
 							]
 						}
 					},
