@@ -4,6 +4,7 @@ import com.n11.bootcamp.dao.ProductCommentDAO;
 import com.n11.bootcamp.dto.CommentWithUserAndProductDTO;
 import com.n11.bootcamp.dto.ProductCommentDTO;
 import com.n11.bootcamp.entity.ProductComment;
+import com.n11.bootcamp.exception.ApiRequestException;
 import com.n11.bootcamp.service.ProductCommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -58,7 +59,7 @@ public class ProductCommentServiceImpl implements ProductCommentService {
     @Transactional
     public void deleteProductCommentById(Long id) {
 
-        productCommentDAO.findById(id).orElseThrow(() -> new RuntimeException("Product comment is not found by id."));
+        productCommentDAO.findById(id).orElseThrow(() -> new ApiRequestException("Product comment is not found by id."));
         productCommentDAO.deleteProductCommentById(id);
     }
 }
